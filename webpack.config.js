@@ -1,6 +1,9 @@
-var webpack            = require("webpack");
-var { resolve, join }  = require("path");
-var CopyWebpackPlugin = require("copy-webpack-plugin");
+var webpack            = require('webpack');
+var { resolve, join }  = require('path');
+var CopyWebpackPlugin  = require('copy-webpack-plugin');
+var HtmlWebpackPlugin  = require('html-webpack-plugin');
+// var CleanWebpackPlugin = require('clean-webpack-plugin');
+var WorkboxPlugin      = require('workbox-webpack-plugin');
 
 var OUTPUT_PATH     = resolve('dist');
 var webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs';
@@ -23,17 +26,18 @@ var polyfills = [
   }
 ];
 
+var workboxCli = {
+  clientsClaim: true,
+  skipWaiting: true
+}
+
 module.exports = {
-  entry: [
-    './src/my-app.js',
-    './src/list-view.js',
-    './src/detail-view.js'
-  ],
+  entry: './src/index.js',
   output: {
     path: OUTPUT_PATH,                                                                                                    
     filename: '[name].js'
   },
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -60,10 +64,19 @@ module.exports = {
             }
           }
         ]
+      },
+      {
+        test:/\.css$/,
+        use:['style-loader','css-loader']
       }
     ]
   },
   plugins: [
-    new CopyWebpackPlugin(polyfills)
+    new CopyWebpackPlugin(polyfills),
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+      inject: 'body'
+    }),
+    new WorkboxPlugin.GenerateSW(workboxCli)
   ]
 }

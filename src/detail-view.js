@@ -1,6 +1,6 @@
 import { baseURL } from './api/service';
 
-class DetailViewElement extends HTMLElement{
+export default class DetailViewElement extends HTMLElement{
   // método para observar as alteração no atributo path do nosso
   // elemento detail-view
   static get observedAttributes() {
@@ -38,5 +38,3 @@ class DetailViewElement extends HTMLElement{
     `;
   }
 }
-
-customElements.define('detail-view', DetailViewElement);

@@ -1,4 +1,4 @@
-class MyAppElement extends HTMLElement {
+export default class MyAppElement extends HTMLElement {
   connectedCallback() {
     // adiciona evento de click que observara o click nos items d pagina
     this.addEventListener('click', this.clickHandler);
@@ -55,5 +55,3 @@ class MyAppElement extends HTMLElement {
     super();
   }
 }
-
-customElements.define('my-app', MyAppElement);

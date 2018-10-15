@@ -1,6 +1,6 @@
 import { filmsURL } from './api/service';
 
-class ListViewElement extends HTMLElement{
+export default class ListViewElement extends HTMLElement{
   connectedCallback() {
     let response = fetch(`${filmsURL}?&format=json`);
     response.then(data => data.json())
@@ -22,5 +22,3 @@ class ListViewElement extends HTMLElement{
   }
 
 }
-
-customElements.define('list-view', ListViewElement);
