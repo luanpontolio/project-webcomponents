@@ -5,7 +5,7 @@ var HtmlWebpackPlugin  = require('html-webpack-plugin');
 // var CleanWebpackPlugin = require('clean-webpack-plugin');
 var WorkboxPlugin      = require('workbox-webpack-plugin');
 
-var OUTPUT_PATH     = resolve('dist');
+var OUTPUT_PATH     = resolve('public');
 var webcomponentsjs = './node_modules/@webcomponents/webcomponentsjs';
 
 var polyfills = [

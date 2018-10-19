@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web App</title>
+  <meta charset="utf-8">
+  <meta name="viewport"
+    content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+  <meta name="theme-color" content="#673AB7">
+  
+  <script>if (!window.customElements) { document.write('<!--'); }</script>
+  <script src="/dist/vendor/custom-elements-es5-adapter.js"></script>
+
+  <script>
+    if('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js').then(registration => {
+          console.log('SW registered: ', registration);
+        
+        }).catch(registrationError => {
+          console.log('SW registration failed: ', registrationError);
+       });
+     });
+  }
+  </script>
+</head>
+<body>
+  <header>Star Wars</header>
+  <my-app>
+    <list-view></list-view>
+    <detail-view></detail-view>
+  </my-app>
+  <script src="/dist/vendor/webcomponents-loader.js"></script>
+<script type="text/javascript" src="main.js"></script></body>
+</html>
